@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Special Day ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #ffe6e6, #ffb3b3);
+            text-align: center;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            color: #ff4d4d;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            margin: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .yes-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+        .no-btn {
+            background: #e0e0e0;  /* Fixed the gray color */
+            color: #333;
+        }
+        .sad-face {
+            font-size: 4rem;
+            margin: 2rem;
+            animation: bounce 2s infinite;
+        }
+        .hearts {
+            font-size: 2rem;
+            animation: float 2s infinite ease-in-out;
+            position: absolute;
+            opacity: 0;
+        }
+        .super-sad {
+            font-size: 6rem;
+            margin: 2rem;
+            animation: shake 0.5s infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .success-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .super-sad-screen {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div id="initial">
+            <h1>Hey Cutiee ❤️</h1>
+            <p>Would you like to go out on a date with me? </p>
+            <button class="btn yes-btn" onclick="showSuccess()">Yes🥰!</button>
+            <button class="btn no-btn" onclick="showSad()">No😼</button>
+        </div>
+        
+        <div id="sadScreen" style="display: none;">
+            <div class="sad-face">🥹</div>
+            <h2>Are you really sure about that?</h2>
+            <button class="btn yes-btn" onclick="showSuccess()">Yes, We can go🥰🥰!</button>
+            <button class="btn no-btn" onclick="showSuperSad()">Nahi jaana?😞</button>
+        </div>
+
+        <div id="superSadScreen" class="super-sad-screen">
+            <div class="super-sad">😭</div>
+            <h2>Thoda reham ma'am</h2>
+            <button class="btn yes-btn" onclick="showSuccess()">Ok ok, Yes!😼</button>
+            <button class="btn no-btn" onclick="showSuccess()">Fine... Yes!😼</button>
+        </div>
+
+        <div id="successScreen" class="success-message">
+            <h2>hehehe❤️</h2>
+            <p>Thank You Governess!</p>
+            <div class="sad-face">🥰</div>
+        </div>
+    </div>
+
+    <script>
+        function showSad() {
+            document.getElementById('initial').style.display = 'none';
+            document.getElementById('sadScreen').style.display = 'block';
+        }
+
+        function showSuperSad() {
+            document.getElementById('sadScreen').style.display = 'none';
+            document.getElementById('superSadScreen').style.display = 'block';
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'hearts';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }
+
+        function showSuccess() {
+            document.getElementById('initial').style.display = 'none';
+            document.getElementById('sadScreen').style.display = 'none';
+            document.getElementById('superSadScreen').style.display = 'none';
+            document.getElementById('successScreen').style.display = 'block';
+            
+            // Create floating hearts
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 300);
+            }
+        }
+    </script>
+</body>
+</html>
